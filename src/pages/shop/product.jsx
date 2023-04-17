@@ -1,11 +1,37 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
+import { PRODUCTS } from "../../products";
+import { useNavigate } from "react-router-dom";
 
 export const Product = (props) => {
   const { id, productName, price, productImage } = props.data;
   const { addToCart, cartItems } = useContext(ShopContext);
+  const navigate = useNavigate();
 
-  const cartItemCount = cartItems[id];
+  // const isLoggedIn = localStorage.getItem("loggedin");
+  const handleClick = (e) => {
+    e.preventDefault();
+    const isLoggedIn = JSON.parse(localStorage.getItem("loggedin"));
+    if(isLoggedIn === true) {
+       addToCart(id);
+    } else {
+      alert("Please log in");
+      navigate("/login");
+    }
+  };
+
+  const handleBuyClick = (e) => {
+    e.preventDefault();
+    const isLoggedIn = JSON.parse(localStorage.getItem("loggedin"));
+    if(isLoggedIn === true) {
+       addToCart(id);
+       navigate("/payment");
+    } else {
+      alert("Please log in");
+      navigate("/login");
+    }
+  };
+
 
   return (
     <div className="product">
@@ -16,9 +42,15 @@ export const Product = (props) => {
         </p>
         <p><b> Rs. {price}</b></p>
       </div>
-      <button className="addToCartBttn" onClick={() => addToCart(id)}>
-       <b>Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}</b>
+      <div>
+      {/* <button className="addToCartBttn"  onClick={() =>   addToCart(id)}> */}
+      <button className="addToCartBttn"  onClick={handleClick}>
+       <b>Add To Cart</b>
       </button>
+      <button onClick={handleBuyClick} className="buynow">
+       <b>Buy Now</b>
+      </button>
+      </div>
     </div>
   );
 };

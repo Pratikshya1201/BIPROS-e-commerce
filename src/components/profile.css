@@ -1,0 +1,20 @@
+.addressbutton {
+    margin-top: 30px;
+    margin-bottom: 60px;
+    margin-left: 10px;
+}
+
+.logoutbutton {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.edit {
+   padding: 50px 80px;
+   margin-right: 60px;
+}
+
+.delete {
+    padding: 50px 80px;
+}

@@ -4,10 +4,9 @@ import "./shop.css";
 import { Product } from "./product";
 export const Shop = ({ searchInput, setSearchInput }) => {
   const [products, setProducts] = useState(PRODUCTS);
-
   let filteredProduct = products.filter((product) =>
-    product.productName.toLowerCase().includes(searchInput.toLowerCase())
-  );
+  product.productName.toLowerCase().includes(searchInput.toLowerCase())
+);
 
   return (
     <div className="shop">
